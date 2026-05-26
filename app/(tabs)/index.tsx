@@ -16,10 +16,8 @@ export default function HomeScreen() {
 
   const isValidTag = (tag: string) => {
     const regex = /^[A-Z0-9]+$/i;
-    if (!regex.test(tag) || tag.length !== 9) {
-      alert(
-        "El tag solo puede contener los caracteres: A-Z y 0-9. y debe cumplir con 9 caracteres.",
-      );
+    if (!regex.test(tag)) {
+      alert("El tag solo puede contener los caracteres: A-Z y 0-9.");
       return false;
     }
     return true;
@@ -29,51 +27,68 @@ export default function HomeScreen() {
     if (isValidTag(playerTag) && isValidTag(rivalTag)) {
       console.log(playerTag, rivalTag);
       const apiKey = process.env.EXPO_PUBLIC_API_KEY;
-      const res = await fetch(
-        `https://proxy.royaleapi.dev/v1/players/%23${playerTag}/battlelog`,
-        {
-          headers: {
-            Authorization: `Bearer ${apiKey}`,
+
+      try {
+        const res = await fetch(
+          `https://proxy.royaleapi.dev/v1/players/%23${playerTag}/battlelog`,
+          {
+            headers: {
+              Authorization: `Bearer ${apiKey}`,
+            },
           },
-        },
-      );
-      let batallas: any[] = [];
-      let globalScoreTemp = { wins: 0, losses: 0 };
-      const data = await res.json();
-      data.forEach((batalla: any) => {
-        const rival = batalla.opponent.find(
-          (op: { tag: string }) => op.tag === `#${rivalTag}`,
         );
-        if (rival) {
-          const user = batalla.team.find(
-            (team: { tag: string }) => team.tag === `#${playerTag}`,
+
+        if (!res.ok) {
+          throw new Error(
+            `Error en la solicitud: ${res.status} ${res.statusText}`,
           );
-
-          if (user) {
-            const userCrowns = user.crowns;
-            const rivalCrowns = rival.crowns;
-            const winCondition = userCrowns > rivalCrowns;
-            globalScoreTemp.wins += winCondition ? 1 : 0;
-            globalScoreTemp.losses += !winCondition ? 1 : 0;
-            const battleType = batalla.gameMode.name;
-            const fecha = formatearFechaClash(batalla.battleTime);
-            batallas.push({
-              winCondition,
-              battleDetails: `${userCrowns} - ${rivalCrowns}`,
-              player1: user.name,
-              player2: rival.name,
-              battleDate: fecha,
-              battleType,
-            });
-          }
         }
-      });
+        let batallas: any[] = [];
+        let globalScoreTemp = { wins: 0, losses: 0 };
+        const data = await res.json();
+        if (!Array.isArray(data)) {
+          throw new Error("La respuesta de la API no es válida.");
+        }
+        data.forEach((batalla: any) => {
+          const rival = batalla.opponent.find(
+            (op: { tag: string }) => op.tag === `#${rivalTag}`,
+          );
+          if (rival) {
+            const user = batalla.team.find(
+              (team: { tag: string }) => team.tag === `#${playerTag}`,
+            );
 
-      if (batallas.length === 0) {
-        alert("No se encontraron batallas entre el jugador y el rival.");
+            if (user) {
+              const userCrowns = user.crowns;
+              const rivalCrowns = rival.crowns;
+              const winCondition = userCrowns > rivalCrowns;
+              globalScoreTemp.wins += winCondition ? 1 : 0;
+              globalScoreTemp.losses += !winCondition ? 1 : 0;
+              const battleType = batalla.gameMode.name;
+              const fecha = formatearFechaClash(batalla.battleTime);
+              batallas.push({
+                winCondition,
+                battleDetails: `${userCrowns} - ${rivalCrowns}`,
+                player1: user.name,
+                player2: rival.name,
+                battleDate: fecha,
+                battleType,
+              });
+            }
+          }
+        });
+
+        if (batallas.length === 0) {
+          alert("No se encontraron batallas entre el jugador y el rival.");
+        }
+        setRivalBattles(batallas);
+        setGlobalScore(globalScoreTemp);
+      } catch (error) {
+        console.error("Fallo al analizar rivalidad:", error);
+        alert(
+          "Hubo un problema al buscar las batallas. Verifica los Tags o tu conexión a internet.",
+        );
       }
-      setRivalBattles(batallas);
-      setGlobalScore(globalScoreTemp);
     }
   };
 
