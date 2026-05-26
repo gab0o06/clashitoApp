@@ -30,7 +30,7 @@ export default function HomeScreen() {
       console.log(playerTag, rivalTag);
       const apiKey = process.env.EXPO_PUBLIC_API_KEY;
       const res = await fetch(
-        `https://api.clashroyale.com/v1/players/%23${playerTag}/battlelog`,
+        `https://proxy.royaleapi.dev/v1/players/%23${playerTag}/battlelog`,
         {
           headers: {
             Authorization: `Bearer ${apiKey}`,

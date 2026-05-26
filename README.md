@@ -1,50 +1,41 @@
-# Welcome to your Expo app 👋
+# 👑 ClashitoApp - Tracker
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+![ClashitoApp Banner](./assets/utils/Banner_This_is_Fine.png)
 
-## Get started
+ClashitoApp es una aplicación móvil desarrollada en **React Native / Expo** que te permite rastrear y analizar tu historial de batallas contra rivales específicos en Clash Royale. Diseñada con una interfaz (Dark Theme), fuentes personalizadas y uso de la API oficial de Supercell.
 
-1. Install dependencies
+## ✨ Características Principales
 
-   ```bash
-   npm install
-   ```
+- **Búsqueda por Tags:** Ingresa tu Player Tag y el de tu rival para filtrar el historial de enfrentamientos directos.
+- **UI/UX Inmersiva:** Diseño oscuro inspirado en la estética de Clash Royale, con componentes personalizados y tipografía temática (Lilita One).
+- **Consumo de API Oficial:** Conexión directa y en tiempo real con la API v1 de Supercell.
+- **Validación de Datos:** Limpieza automática de inputs para evitar errores en las peticiones HTTP.
 
-2. Start the app
+## 📱 Pantallas (Screenshots)
 
-   ```bash
-   npx expo start
-   ```
+|                  Pantalla Principal                  |
+| :--------------------------------------------------: |
+| <img src="./assets/utils/homePage.jpeg" width="250"> |
 
-In the output, you'll find options to open the app in a
+## 🛠️ Tecnologías Usadas
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- **Framework:** [React Native](https://reactnative.dev/) / [Expo](https://expo.dev/)
+- **Lenguaje:** TypeScript / JavaScript
+- **Navegación:** Expo Router (File-based routing)
+- **Estilos:** StyleSheet nativo con emulación de sombras (Drop Shadow, Text Stroke).
+- **Gestión de Entorno:** `.env` nativo de Expo
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 🚀 Requisitos Previos
 
-## Get a fresh project
+Para correr este proyecto en tu máquina local, necesitarás:
 
-When you're ready, run:
+1. Node.js instalado.
+2. Una clave válida de la API de Clash Royale. Puedes obtenerla en el [Portal de Desarrolladores de Supercell](https://developer.clashroyale.com/).
 
-```bash
-npm run reset-project
+### Variables de Entorno
+
+Crea un archivo llamado `.env` en la raíz del proyecto y agrega tu API Key:
+
+```env
+EXPO_PUBLIC_API_KEY=tu_clave_super_secreta_aqui
 ```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
