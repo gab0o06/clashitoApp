@@ -39,3 +39,7 @@ Crea un archivo llamado `.env` en la raíz del proyecto y agrega tu API Key:
 ```env
 EXPO_PUBLIC_API_KEY=tu_clave_super_secreta_aqui
 ```
+### Mejoras futuras
+- Buscar por Nombre al usuario.
+- Filtrar por Tipo de modo de juego.
+- Tener acceso a un historico más grande.
