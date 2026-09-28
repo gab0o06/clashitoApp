@@ -19,6 +19,26 @@ export const Colors = {
   icon: "#9BA1A6",
   tabIconDefault: "#9BA1A6",
   tabIconSelected: tintColorDark,
+  // Colores para ranking y primeros lugares
+  rojoFuerte: "#C62828",
+  rojoFuerteBorde: "#EF5350",
+  rojoFuerteOscuro: "#8E0000",
+  white: "#FFFFFF",
+  black: "#000000",
+  gold: "#FFD700",
+  silver: "#D1D5DB",
+  bronze: "#CD7F32",
+  rankBadge: "#15181C",
+  borderDark: "#000000",
+  // Colores para calificar / estrellas y diseño experimental
+  starActive: "#FFD700",
+  starInactive: "#4A525D",
+  cardFeedback: "#252B33",
+  inputFeedback: "#1A1E24",
+  borderFeedback: "#374151",
+  successGreen: "#4CAF50",
+  chipSelected: "#2D88FF",
+  chipUnselected: "#1E2328",
 };
 
 export const Fonts = {

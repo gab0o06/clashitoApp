@@ -1,3 +1,4 @@
+import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import React from "react";
 
@@ -7,10 +8,45 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors.tint,
+        tabBarActiveTintColor: Colors.btnSecundario,
+        tabBarInactiveTintColor: Colors.icon,
+        tabBarStyle: {
+          backgroundColor: Colors.tarjetas,
+          borderTopColor: Colors.borderDark,
+          height: 60,
+          paddingBottom: 8,
+          paddingTop: 8,
+        },
         headerShown: false,
-        tabBarStyle: { display: "none" },
       }}
-    ></Tabs>
+    >
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: "Tracker",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="shield-half-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="ranking"
+        options={{
+          title: "Ranking",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="trophy-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="calificar_app"
+        options={{
+          title: "Calificar",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="star-outline" size={size} color={color} />
+          ),
+        }}
+      />
+    </Tabs>
   );
 }

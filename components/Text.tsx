@@ -22,6 +22,8 @@ export const Texto = ({
   );
 };
 
+export { Texto as Text };
+
 const styles = StyleSheet.create({
   normal: {
     fontFamily: Fonts.texto,
